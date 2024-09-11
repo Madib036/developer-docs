@@ -132,3 +132,7 @@ Silverstripe core environment variables are listed here, though you're free to d
 | `SS_BASE_URL` | The URL to use when it isn't determinable by other means (for example for CLI commands). Should either start with a protocol (e.g. `https://www.example.com`) or with a double forward slash (e.g. `//www.example.com`). |
 | `SS_FLUSH_ON_DEPLOY` | Try to detect deployments through file system modifications and flush on the first request after every deploy. Does not run "dev/build" - only "flush". Possible values are `true` (check for a framework PHP file modification time), `false` (no checks, skip deploy detection) or a path to a specific file or folder to be checked. See [DeployFlushDiscoverer](api:SilverStripe\Core\Startup\DeployFlushDiscoverer) for more details.<br /><br />False by default. |
 | `SS_TEMP_PATH` | File storage used for the default cache adapters in [Manifests](/developer_guides/execution_pipeline/manifests), [Object Caching](/developer_guides/performance/caching) and [Partial Template Caching](/developer_guides/templates/partial_template_caching). Can be an absolute path (with a leading `/`), or a path relative to the project root. Defaults to creating a sub-directory of PHP's built-in `sys_get_temp_dir()` or using the `silverstripe-cache` directory relative to the project root if one is present. |
+use SilverStripe\Core\EnvironmentLoader;
+$env = BASE_PATH . '/app/.env';
+$loader = new EnvironmentLoader();
+$loader->loadFile($env);
